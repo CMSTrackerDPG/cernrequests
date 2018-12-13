@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/ptrstn/cernrequests.svg?branch=master)](https://travis-ci.com/ptrstn/cernrequests)
+
 # CERN Requests
 
 Enables using [requests]("https://github.com/requests/requests") without having to configure the CERN Root certificates.
@@ -7,6 +9,8 @@ Inspired by [certifi](https://github.com/certifi/python-certifi) and [requests-k
 The Root certificate bundle is copied from the [linuxsoft cern page](http://linuxsoft.cern.ch/cern/centos/7/cern/x86_64/repoview/CERN-CA-certs.html) and can also be created manually by downloading the CERN Grid Certification Authority files from [cafiles.cern.ch/cafiles](https://cafiles.cern.ch/cafiles/).
 
 ## Installation
+
+Requires ```Python 2.7``` or ```Python 3.4+```
 
 ```bash
 pip intall git+https://github.com/ptrstn/cernrequests
