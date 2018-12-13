@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
     name="cernrequests",
@@ -7,6 +7,8 @@ setup(
     url="https://github.com/ptrstn/cernrequests",
     author="Peter Stein",
     author_email="peter.stein@cern.ch",
-    packages=find_packages(),
+    packages=['cernrequests'],
+    package_dir={'cernrequests': 'cernrequests'},
+    package_data={'cernrequests': ['*.pem']},
     install_requires=["requests", "future"],
 )
