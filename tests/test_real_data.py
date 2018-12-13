@@ -1,8 +1,11 @@
 import json
+import pytest
 
 import requests
+from requests.exceptions import SSLError
 
 import cernrequests
+from cernrequests import certs
 from cernrequests.cookies import get_sso_cookies
 
 
@@ -44,3 +47,18 @@ def test_wbm():
 
     expected = "<nLumiSections>160</nLumiSections>"
     assert expected in response.content
+
+    # Same with without cernrequests wrapper
+    ca_bundle = certs.where()
+    response = requests.get(url, cookies=cookies, verify=ca_bundle)
+    assert expected in response.content
+
+    # Missing Certification Authority
+    with pytest.raises(SSLError):
+        requests.get(url, cookies=cookies)
+
+    # Missing Grid User Certificate
+    response = requests.get(url, verify=ca_bundle)
+    assert expected not in response.content
+
+
