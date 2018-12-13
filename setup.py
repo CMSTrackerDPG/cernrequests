@@ -8,5 +8,5 @@ setup(
     author="Peter Stein",
     author_email="peter.stein@cern.ch",
     packages=find_packages(),
-    install_requires=["requests"],
+    install_requires=["requests", "future"],
 )
