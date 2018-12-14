@@ -42,7 +42,7 @@ response = cernrequests.get(url)
 
 ### Cookies Example
 
-If you want to access a website which requires which CERN Single Sign-on cookies you can do the following:
+If you want to access a website which requires CERN Single Sign-on cookies you can do the following:
 
 ```python
 import cernrequests
@@ -52,13 +52,37 @@ cookies = cernrequests.get_sso_cookies(url)
 response = cernrequests.get(url, cookies=cookies)
 ```
 
-## FAQ
+### Alternative usage
 
-### How do i specify custom user certificate paths?
+If you want to use ```requests``` directly without the CERN wrapper you can get the exact same functionality by doing:
+
+```pyhon
+import requests
+from cernrequests import certs
+
+url = "https://<your-cern-website>"
+cert = certs.default_user_certificate_paths()
+ca_bundle = certs.where()
+
+response = requests.get(url, cert=cert, verify=ca_bundle)
+```
+
+## Configuration
 
 The default user certificate paths are ```~\.globus\usercert.pem``` and ```~\.globus\userkey.pem```. 
 
-If you want to use different paths you can pass them to the cert argument:
+You can configure the default grid user certificate path by setting the ```CERN_CERTIFICATE_PATH``` environment variable.
+
+For example:
+
+```bash
+export CERN_CERTIFICATE_PATH=${HOME}/my_custom_folder
+```
+
+This will still assume that your filenames are ```usercert.pem``` and ```userkey.pem```
+Write this line in your ```.bashrc``` to make the configuration persistent.
+
+Alternatively you can also specify the paths directly in your code:
 
 ```python
 import cernrequests
@@ -69,6 +93,8 @@ key = "my/custom/path/key.pem"      # Private key path
 
 cernrequests.get(url, cert=(cert,key))
 ```
+
+This way you can even use custom names such as ```cert.pem``` and ```key.pem```
 
 ## References
 
