@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.com/ptrstn/cernrequests.svg?branch=master)](https://travis-ci.com/ptrstn/cernrequests)
+[![](https://img.shields.io/pypi/v/cernrequests.svg)](https://pypi.org/project/cernrequests/)
+
 
 # CERN Requests
 
@@ -13,7 +15,7 @@ The Root certificate bundle is copied from the [linuxsoft cern page](http://linu
 Requires ```Python 2.7``` or ```Python 3.4+```
 
 ```bash
-pip intall git+https://github.com/ptrstn/cernrequests
+pip intall cernrequests
 ```
 
 ## Prerequisites
