@@ -15,7 +15,7 @@ The Root certificate bundle is copied from the [linuxsoft cern page](http://linu
 Requires ```Python 2.7``` or ```Python 3.4+```
 
 ```bash
-pip intall cernrequests
+pip install cernrequests
 ```
 
 ## Prerequisites
