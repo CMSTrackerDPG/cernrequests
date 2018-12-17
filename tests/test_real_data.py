@@ -46,12 +46,12 @@ def test_wbm():
     response = cernrequests.get(url, cookies=cookies)
 
     expected = "<nLumiSections>160</nLumiSections>"
-    assert expected in response.content
+    assert expected in response.text
 
     # Same with without cernrequests wrapper
     ca_bundle = certs.where()
     response = requests.get(url, cookies=cookies, verify=ca_bundle)
-    assert expected in response.content
+    assert expected in response.text
 
     # Missing Certification Authority
     with pytest.raises(SSLError):
@@ -59,6 +59,6 @@ def test_wbm():
 
     # Missing Grid User Certificate
     response = requests.get(url, verify=ca_bundle)
-    assert expected not in response.content
+    assert expected not in response.text
 
 
