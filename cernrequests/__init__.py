@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 # © Copyright 2018 CERN
 #
 # This software is distributed under the terms of the GNU Lesser General Public
