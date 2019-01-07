@@ -58,7 +58,7 @@ response = cernrequests.get(url, cookies=cookies)
 
 If you want to use ```requests``` directly without the CERN wrapper you can get the exact same functionality by doing:
 
-```pyhon
+```python
 import requests
 from cernrequests import certs
 
@@ -71,7 +71,7 @@ response = requests.get(url, cert=cert, verify=ca_bundle)
 
 ## Configuration
 
-The default user certificate paths are first ```~\private\``` and ```~\.globus\``` for fallback. The default public key file is ```usercert.pem``` and the default private key file name is ```userkey.pem```
+The default user certificate paths are first ```~\private\``` and ```~\.globus\``` for fallback. The default *public* key file name is ```usercert.pem``` and the default *private* key file name is ```userkey.pem```
 
 You can configure the default grid user certificate path by setting the ```CERN_CERTIFICATE_PATH``` environment variable.
 
