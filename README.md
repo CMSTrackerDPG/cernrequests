@@ -23,10 +23,10 @@ pip install cernrequests
 Request a [Grid User Certificate](https://ca.cern.ch/ca/) and convert into public and private key:
 
 ```bash
-mkdir -p ~/.globus
-openssl pkcs12 -clcerts -nokeys -in myCertificate.p12 -out ~/.globus/usercert.pem
-openssl pkcs12 -nocerts -in myCertificate.p12 -out ~/.globus/userkey.tmp.pem
-openssl rsa -in ~/.globus/userkey.tmp.pem -out ~/.globus/userkey.pem
+mkdir -p ~/private
+openssl pkcs12 -clcerts -nokeys -in myCertificate.p12 -out ~/private/usercert.pem
+openssl pkcs12 -nocerts -in myCertificate.p12 -out ~/private/userkey.tmp.pem
+openssl rsa -in ~/private/userkey.tmp.pem -out ~/private/userkey.pem
 ```
 
 The certificates have to be **passwordless**.
@@ -71,7 +71,7 @@ response = requests.get(url, cert=cert, verify=ca_bundle)
 
 ## Configuration
 
-The default user certificate paths are ```~\.globus\usercert.pem``` and ```~\.globus\userkey.pem```. 
+The default user certificate paths are first ```~\private\``` and ```~\.globus\``` for fallback. The default public key file is ```usercert.pem``` and the default private key file name is ```userkey.pem```
 
 You can configure the default grid user certificate path by setting the ```CERN_CERTIFICATE_PATH``` environment variable.
 

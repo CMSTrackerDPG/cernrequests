@@ -12,5 +12,10 @@ python:
 install:
   - pip install -e .
 
+before_script:
+  - mkdir -p $HOME/private
+  - touch $HOME/private/usercert.pem
+  - touch $HOME/private/userkey.pem
+
 script:
   - pytest --ignore tests/test_real_data.py
