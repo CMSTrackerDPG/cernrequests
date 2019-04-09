@@ -48,7 +48,7 @@ def _extract_login_form(response_content):
     return action, form_data
 
 
-def get_sso_cookies(url, cert=None):
+def get_sso_cookies(url, cert=None, **kwargs):
     """
     Based on https://github.com/cerndb/cern-sso-python
 
@@ -56,7 +56,9 @@ def get_sso_cookies(url, cert=None):
     :param cert: (certificate, key) tuple
     :return: CERN SSO cookie
     """
-    ca_bundle = certs.where()
+    verify = kwargs.pop("verify", None)
+    ca_bundle = certs.where() if verify is None else verify
+
     with requests.Session() as session:
         session.cert = cert if cert else certs.default_user_certificate_paths()
 

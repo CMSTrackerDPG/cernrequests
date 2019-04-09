@@ -20,7 +20,7 @@ with open(path.join(this_directory, "README.md")) as f:
 
 setup(
     name="cernrequests",
-    version="0.2.0",
+    version="0.3.0",
     desription="CERN wrapper around the requests package",
     long_description=long_description,
     long_description_content_type="text/markdown",

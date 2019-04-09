@@ -54,15 +54,19 @@ def test_wbm():
     The CMS WBM webiste requires the CERN Root Certificate Authority
     """
     url = "https://cmswbm.cern.ch/cmsdb/servlet/RunSummary?RUN=211831&FORMAT=XML"
-    cookies = get_sso_cookies(url)
-    response = cernrequests.get(url, cookies=cookies)
+    cookies = get_sso_cookies(url, verify=False)
+    response = cernrequests.get(url, cookies=cookies, verify=False)
 
     expected = "<nLumiSections>160</nLumiSections>"
     assert expected in response.text
 
-    # Same with without cernrequests wrapper
-    ca_bundle = certs.where()
-    response = requests.get(url, cookies=cookies, verify=ca_bundle)
+
+def test_wbm_without_wrapper():
+    url = "https://cmswbm.cern.ch/cmsdb/servlet/RunSummary?RUN=211831&FORMAT=XML"
+    cookies = get_sso_cookies(url, verify=False)
+
+    response = requests.get(url, cookies=cookies, verify=False)
+    expected = "<nLumiSections>160</nLumiSections>"
     assert expected in response.text
 
     # Missing Certification Authority
@@ -70,5 +74,5 @@ def test_wbm():
         requests.get(url, cookies=cookies)
 
     # Missing Grid User Certificate
-    response = requests.get(url, verify=ca_bundle)
+    response = requests.get(url, verify=False)
     assert expected not in response.text
