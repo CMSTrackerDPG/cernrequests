@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/ptrstn/cernrequests.svg?branch=master)](https://travis-ci.com/ptrstn/cernrequests)
+[![Build Status](https://travis-ci.com/CMSTrackerDPG/cernrequests.svg?branch=master)](https://travis-ci.com/CMSTrackerDPG/cernrequests)
 [![](https://img.shields.io/pypi/v/cernrequests.svg)](https://pypi.org/project/cernrequests/)
 
 
