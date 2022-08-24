@@ -32,47 +32,20 @@ def test_dqmgui():
     assert expected == cernrequests.get(url).json()
 
 
-def test_lumis():
+def test_rr():
     """
-    The lumis website does not require the CERN Root Certificate Authority
+    RunRegistry requires cookies
     """
-    url = "https://lumis.web.cern.ch/api/all/?run_min=323755&run_max=323755"
-    expected = json.loads(
-        '{"323755": [[27, 815], [816, 817], [818, 823], '
-        "[824, 825], [826, 826], [827, 827], [828, 830], "
-        "[831, 832], [833, 861], [862, 863], [864, 964], "
-        "[965, 966]]}"
-    )
+    url = "https://cmsrunregistry.web.cern.ch/api/get_all_dataset_names_of_run/357756"
+    cert = certs.default_user_certificate_paths()
+    ca_bundle = certs.where()
+    cookies = get_sso_cookies(url, cert, verify=ca_bundle)
+    response = requests.get(url, cookies=cookies).json()
+    expected = [
+        "/Express/Collisions2022/DQM",
+        "/Express/Commissioning2022/DQM",
+        "online",
+        "/PromptReco/Collisions2022/DQM",
+    ]
 
-    cookies = get_sso_cookies(url)
-    response = requests.get(url, cookies=cookies)
-    assert expected == response.json()
-
-
-def test_wbm():
-    """
-    The CMS WBM webiste requires the CERN Root Certificate Authority
-    """
-    url = "https://cmswbm.cern.ch/cmsdb/servlet/RunSummary?RUN=211831&FORMAT=XML"
-    cookies = get_sso_cookies(url, verify=False)
-    response = cernrequests.get(url, cookies=cookies, verify=False)
-
-    expected = "<nLumiSections>160</nLumiSections>"
-    assert expected in response.text
-
-
-def test_wbm_without_wrapper():
-    url = "https://cmswbm.cern.ch/cmsdb/servlet/RunSummary?RUN=211831&FORMAT=XML"
-    cookies = get_sso_cookies(url, verify=False)
-
-    response = requests.get(url, cookies=cookies, verify=False)
-    expected = "<nLumiSections>160</nLumiSections>"
-    assert expected in response.text
-
-    # Missing Certification Authority
-    with pytest.raises(SSLError):
-        requests.get(url, cookies=cookies)
-
-    # Missing Grid User Certificate
-    response = requests.get(url, verify=False)
-    assert expected not in response.text
+    assert expected == response
