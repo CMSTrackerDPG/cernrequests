@@ -1,1 +1,2 @@
 pytest
+-e .  # Install current package too

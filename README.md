@@ -98,6 +98,27 @@ cernrequests.get(url, cert=(cert,key))
 
 This way you can even use custom names such as ```cert.pem``` and ```key.pem```
 
+## Testing
+
+```bash
+python -m venv venv
+source venv/bin/activate
+pip install -r testing-requirements.txt
+pytest
+```
+
+## FAQ
+
+### I'm getting `certificate verify failed`! What should I do?
+
+The `cernrequests/cern-cacerts.pem` file has expired, and will need to be updated by the library maintainer. Download all the CA files from [here](https://ca.cern.ch/cafiles/certificates/Download.aspx?ca=cern) and convert them to `.pem` files, one-by-one by running:
+
+```bash
+ openssl x509 -in <CERN certification authority file.crt> -out temp.pem -outform PEM
+```
+
+Then, merge the contents of each `.pem` file into a single `cern-cacerts.pem` file and replace the existing one. Verify that the certs work by running `pytest`.
+
 ## References
 
 - http://docs.python-requests.org/en/master/
