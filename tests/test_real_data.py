@@ -10,15 +10,14 @@
 # granted to it by virtue of its status as an Intergovernmental Organization
 # or submit itself to any jurisdiction.
 
+import os
 import json
-import pytest
-
 import requests
-from requests.exceptions import SSLError
 
 import cernrequests
 from cernrequests import certs
 from cernrequests.cookies import get_sso_cookies
+from cernrequests.core import get, get_with_token
 
 
 def test_dqmgui():
@@ -36,16 +35,19 @@ def test_rr():
     """
     RunRegistry requires cookies
     """
-    url = "https://cmsrunregistry.web.cern.ch/api/get_all_dataset_names_of_run/357756"
-    cert = certs.default_user_certificate_paths()
-    ca_bundle = certs.where()
-    cookies = get_sso_cookies(url, cert, verify=ca_bundle)
-    response = requests.get(url, cookies=cookies).json()
+
+    url = (
+        "https://dev-cmsrunregistry.web.cern.ch/api/get_all_dataset_names_of_run/357756"
+    )
+    response = get_with_token(
+        url, target_application="dev-cmsrunregistry-sso-proxy"
+    ).json()
     expected = [
-        "/Express/Collisions2022/DQM",
-        "/Express/Commissioning2022/DQM",
+        # TODO: Uncomment this when new SSO is deployed for production RR
+        # "/Express/Collisions2022/DQM",
+        # "/Express/Commissioning2022/DQM",
         "online",
-        "/PromptReco/Collisions2022/DQM",
+        # "/PromptReco/Collisions2022/DQM",
     ]
 
     assert expected == response
