@@ -38,7 +38,9 @@ The `.pem` certificates have to be **passwordless**.
 An `.env` file at the root of your project with the following variables set:
 - `SSO_CLIENT_ID`
 - `SSO_CLIENT_SECRET`
-  
+
+(You can rename the `.env_sample` file to `.env` and add the values there).
+
 To request them, you will need to register your application:
 
 1. Create an SSO registration for your application
@@ -50,7 +52,11 @@ To request them, you will need to register your application:
 
     ![](doc/create_registration_02.png)
 
-3. Edit the SSO application, go to the `SSO Registration` tab and click the plus button:
+    The `Application Identifier` can be anything, it's like a username for your application.t 
+    
+    Click `Submit`.
+
+3. Go back to the Application Portal and edit the SSO application (green button). Then, go to the `SSO Registration` tab and click the plus button:
 
     ![](doc/create_registration_03.png)
 
