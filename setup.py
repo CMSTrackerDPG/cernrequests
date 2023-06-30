@@ -20,7 +20,7 @@ with open(path.join(this_directory, "README.md")) as f:
 
 setup(
     name="cernrequests",
-    version="0.3.2",
+    version="0.4.0",
     desription="CERN wrapper around the requests package",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -29,8 +29,8 @@ setup(
     author_email="peter.stein@cern.ch",
     packages=["cernrequests"],
     package_dir={"cernrequests": "cernrequests"},
-    package_data={"cernrequests": ["*.pem"]},
-    install_requires=["requests", "future"],
+    # package_data={"cernrequests": ["*.pem"]},
+    install_requires=["requests", "future", "python-dotenv", "pyjwt"],
     classifiers=[
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     ],

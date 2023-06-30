@@ -10,5 +10,5 @@
 # granted to it by virtue of its status as an Intergovernmental Organization
 # or submit itself to any jurisdiction.
 
-from .core import get
-from .cookies import get_sso_cookies
+from .core import get, get_with_token
+from .token import get_api_token
