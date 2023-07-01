@@ -30,7 +30,10 @@ from cernrequests import certs
 def _construct_certificate_authentication_url(login_redirect_url):
     query = urlparse(login_redirect_url).query
     certificate_authentication_part = "auth/sslclient/"
-    base = urljoin(login_redirect_url, certificate_authentication_part)
+    base = urljoin(
+        login_redirect_url.replace("login.cern.ch", "adfs2012master.cern.ch"),
+        certificate_authentication_part,
+    )
     return "{}?{}".format(base, query)
 
 
