@@ -27,6 +27,8 @@ setup(
     url="https://github.com/CMSTrackerDPG/cernrequests",
     author="Peter Stein",
     author_email="peter.stein@cern.ch",
+    maintainer="CMS DQM team",
+    maintainer_email="cms-dqm-coreTeam@cern.ch",
     packages=["cernrequests"],
     package_dir={"cernrequests": "cernrequests"},
     package_data={"cernrequests": ["*.pem"]},
