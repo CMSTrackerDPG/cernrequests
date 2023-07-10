@@ -37,18 +37,29 @@ def get(url, params=None, **kwargs):
 
 def get_with_token(url, params=None, **kwargs):
     """
-    Method working with the new (2023/06) SSO.
+    Method for GETting the contents of a target URL, which
+    is behind CERN SSO. It's working with the ""new"" (2023/06) SSO.
+
+    Accepts two arguments:
+    - target_application (str): The name of the target application
+        You want the token for. This is the name that the target application
+        has used to register in the CERN SSO Application. Contact the
+        target application's developers
+    - api_token (str): If not provided, a new one will be requested.
     """
     if "target_application" not in kwargs:
         raise Exception("You must specify the target_application")
     target_application = kwargs.pop("target_application")
     client_id = os.environ.get("SSO_CLIENT_ID")
     client_secret = os.environ.get("SSO_CLIENT_SECRET")
-    api_token, expiration_datetime = get_api_token(
-        client_id=client_id,
-        client_secret=client_secret,
-        target_application=target_application,
-    )
+    if "api_token" in kwargs:
+        api_token = kwargs.pop("api_token")
+    else:
+        api_token, expiration_datetime = get_api_token(
+            client_id=client_id,
+            client_secret=client_secret,
+            target_application=target_application,
+        )
     return requests.get(
         url,
         params=params,

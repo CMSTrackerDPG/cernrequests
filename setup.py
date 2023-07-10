@@ -9,19 +9,33 @@
 # In applying this licence, CERN does not waive the privileges and immunities
 # granted to it by virtue of its status as an Intergovernmental Organization
 # or submit itself to any jurisdiction.
-
+import os
+import re
+import codecs
 from setuptools import setup
 
-from os import path
+here = os.path.abspath(os.path.dirname(__file__))
 
-this_directory = path.abspath(path.dirname(__file__))
-with open(path.join(this_directory, "README.md")) as f:
+
+def read(*parts):
+    with codecs.open(os.path.join(here, *parts), "r") as fp:
+        return fp.read()
+
+
+def find_version(*file_paths):
+    version_file = read(*file_paths)
+    version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", version_file, re.M)
+    if version_match:
+        return version_match.group(1)
+    raise RuntimeError("Unable to find version string.")
+
+
+with open(os.path.join(here, "README.md")) as f:
     long_description = f.read()
 
 setup(
     name="cernrequests",
-    version="0.4.1",
-    desription="CERN wrapper around the requests package",
+    version=find_version("cernrequests", "__init__.py"),
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/CMSTrackerDPG/cernrequests",

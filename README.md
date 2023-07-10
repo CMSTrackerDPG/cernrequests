@@ -102,6 +102,17 @@ reponse = cernrequests.get_with_token(url, target_audience="<the SSO id of the t
 > `dev-cmsrunregistry-sso-proxy`. 
 > In case of doubt, communicate with the app's developers directly. 
 
+The `get_with_token` method also accepts an `api_token` argument, in case you want to reuse an already issued and non-expired one that you got from [`get_api_token`](#get_api_token).
+
+##### `get_api_token`
+
+This is a method that needs a `target_application` parameter and will try and get an API token, using the `SSO_CLIENT_ID` and `SSO_CLIENT_SECRET` provided as environment variables. 
+
+A `tuple` is returned: `api_token` (`str`) and the `expiration_datetime` (`datetime`).
+
+> **Note**
+> The `expiration_datetime` is not used internally, so it's returned
+> to the user, if they need to check when the token expires. 
 #### Alternative usage
 
 If you want to use ```requests``` directly without the CERN wrapper you can get the exact same functionality by doing:
