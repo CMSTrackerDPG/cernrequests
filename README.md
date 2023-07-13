@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/CMSTrackerDPG/cernrequests.svg?branch=master)](https://travis-ci.com/CMSTrackerDPG/cernrequests)
+![Functional tests](https://github.com/CMSTrackerDPG/cernrequests/actions/workflows/test_package.yaml/badge.svg)
 [![](https://img.shields.io/pypi/v/cernrequests.svg)](https://pypi.org/project/cernrequests/)
 
 
@@ -13,7 +13,10 @@ The Root certificate bundle is copied from the [linuxsoft cern page](http://linu
 
 ## Installation
 
-Requires ```Python 2.7``` or ```Python 3.4+```
+> **Warning**
+> We are no longer supporting Python 2.7.
+
+Requires Python 3.6+.
 
 ```bash
 pip install cernrequests
@@ -161,12 +164,24 @@ This way you can even use custom names such as ```cert.pem``` and ```key.pem```
 
 ## Testing
 
+### Locally
+
 ```bash
 python -m venv venv
 source venv/bin/activate
+pip install -e .
 pip install -r testing-requirements.txt
 pytest
 ```
+
+### GitHub actions
+
+To run the tests on GitHub, we have uploaded a set of `userkey.pem` and `usercert.pem` files, encrypted with GPG. Those are decrypted, using a secret and then used normally. 
+
+See [`the yaml file`](.github/workflows/test_package.yaml) for more details.
+
+> **Note**
+> If the actions are failing, make sure that the Grid Certificates are still valid. You may need to recreate them. For instructions, see [here](https://web.archive.org/web/20230713134837/https://docs.github.com/en/actions/security-guides/encrypted-secrets#storing-large-secrets). Create new grid certificates, encrypt them with a password and replace `tests/usercert.pem.gpg` and `tests/userkey.pem.gpg`. You will also need to update the `GPG_ENC_PASSWORD` secret with the password you used to encrypt them.
 
 ## FAQ
 

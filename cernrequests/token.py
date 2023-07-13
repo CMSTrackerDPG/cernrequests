@@ -6,7 +6,6 @@ https://gitlab.cern.ch/authzsvc/docs/api-access-examples/-/blob/master/python/ap
 import logging
 import datetime
 import requests
-import jwt
 
 DEFAULT_SERVER = "auth.cern.ch"
 DEFAULT_REALM = "cern"
