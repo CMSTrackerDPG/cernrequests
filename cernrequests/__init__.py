@@ -9,7 +9,7 @@
 # In applying this licence, CERN does not waive the privileges and immunities
 # granted to it by virtue of its status as an Intergovernmental Organization
 # or submit itself to any jurisdiction.
-__version__ = "0.4.2"
+__version__ = "0.5.0"
 
 from .core import get, get_with_token
 from .token import get_api_token
