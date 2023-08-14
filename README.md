@@ -44,6 +44,10 @@ An `.env` file at the root of your project with the following variables set:
 
 (You can rename the `.env_sample` file to `.env` and add the values there).
 
+> **Warning**
+> Automatic PaaS registrations (i.e. those whose id starts with `webframeworks-paas-`) will not work;
+> You will have to create a new one. Thanks to Tongguang Cheng for his report. 
+
 To request them, you will need to register your application:
 
 1. Create an SSO registration for your application
