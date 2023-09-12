@@ -38,11 +38,12 @@ The `.pem` certificates have to be **passwordless**.
 
 ### For CERN APIs using the ""new"" SSO
 
-An `.env` file at the root of your project with the following variables set:
-- `SSO_CLIENT_ID`
-- `SSO_CLIENT_SECRET`
-
-(You can rename the `.env_sample` file to `.env` and add the values there).
+You will need to have a plaintext file named `.env` at the same directory where you are running your script from, with the following contents:
+```bash
+SSO_CLIENT_ID=<your client id>
+SSO_CLIENT_SECRET=<your client secret>
+```
+(You can use the `.env_sample` as an example).
 
 > **Warning**
 > Automatic PaaS registrations (i.e. those whose id starts with `webframeworks-paas-`) will not work;
