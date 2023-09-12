@@ -43,13 +43,13 @@ You will need to have a plaintext file named `.env` at the same directory where 
 SSO_CLIENT_ID=<your client id>
 SSO_CLIENT_SECRET=<your client secret>
 ```
-(You can use the `.env_sample` as an example).
+(You can use the `.env_sample` found in this repository as an example).
 
 > **Warning**
 > Automatic PaaS registrations (i.e. those whose id starts with `webframeworks-paas-`) will not work;
 > You will have to create a new one. Thanks to Tongguang Cheng for his report. 
 
-To request them, you will need to register your application:
+To request a client id and a client secret, you will need to register your application at CERN's Application Portal:
 
 1. Create an SSO registration for your application
     on the [CERN Application Portal](https://application-portal.web.cern.ch):
