@@ -60,8 +60,8 @@ To request a client id and a client secret, you will need to register your appli
 
     ![](doc/create_registration_02.png)
 
-    The `Application Identifier` can be anything, it's like a username for your application.t 
-    
+    The `Application Identifier` can be anything, it's like a username for your application. It has to be unique, so, if the name you chose is rejected, try another one.
+    The description can be anything, and it doesn't affect your registration.
     Click `Submit`.
 
 3. Go back to the Application Portal and edit the SSO application (green button). Then, go to the `SSO Registration` tab and click the plus button:
